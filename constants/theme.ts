@@ -80,6 +80,17 @@ export const FONTS = {
   },
 };
 
-const appTheme = { COLORS, SIZES, FONTS };
+export const SHADOW = {
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 3,
+  },
+  shadowOpacity: 0.1,
+  shadowRadius: 3,
+  elevation: 1,
+};
+
+const appTheme = { COLORS, SIZES, FONTS, SHADOW };
 
 export default appTheme;

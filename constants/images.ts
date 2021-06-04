@@ -53,6 +53,7 @@ export default {
   noodle_shop,
   pizza_restaurant,
   pizza,
+  salad,
   sarawak_laksa,
   sushi,
   teh_c_peng,
