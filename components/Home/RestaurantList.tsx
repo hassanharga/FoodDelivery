@@ -46,18 +46,17 @@ const RestaurantList: React.FC<{
                 <Text style={styles.ratingNumber}>
                   {getCatNameById(cat)} {'. '}
                 </Text>
-                {[1, 2, 3].map(n => (
-                  <Text
-                    key={n}
-                    style={{
-                      ...styles.ratingNumber,
-                      color:
-                        n <= item.priceRating ? COLORS.black : COLORS.darkgray,
-                    }}>
-                    $
-                  </Text>
-                ))}
               </View>
+            ))}
+            {[1, 2, 3].map(n => (
+              <Text
+                key={n}
+                style={{
+                  ...styles.ratingNumber,
+                  color: n <= item.priceRating ? COLORS.black : COLORS.darkgray,
+                }}>
+                $
+              </Text>
             ))}
           </View>
         </View>

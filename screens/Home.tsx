@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import Header from '../components/Home/Header';
+import Header from '../components/Header';
 import MainCategories from '../components/Home/MainCategories';
 import RestaurantList from '../components/Home/RestaurantList';
-import { COLORS } from '../constants';
+import { COLORS, icons } from '../constants';
 import {
   Category,
   categoryData,
@@ -36,7 +36,11 @@ const Home: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* page header */}
-      <Header location={currentLocation.streetName} />
+      <Header
+        title={currentLocation.streetName}
+        leftIcon={icons.nearby}
+        rightIcon={icons.basket}
+      />
 
       {/* categoriest */}
       <MainCategories

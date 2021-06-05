@@ -1,11 +1,17 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { COLORS, FONTS, icons, SIZES } from '../../constants';
+import { COLORS, FONTS, SIZES } from '../constants';
 
-const Header: React.FC<{ location: string }> = ({ location }) => (
+const Header: React.FC<{
+  title: string | undefined;
+  leftIcon: typeof import('*.png');
+  rightIcon: typeof import('*.png');
+  leftIconAction?: () => void;
+  rightIconAction?: () => void;
+}> = ({ title, leftIcon, rightIcon, leftIconAction, rightIconAction }) => (
   <View style={styles.header}>
-    <TouchableOpacity style={styles.icon}>
-      <Image source={icons.nearby} resizeMode="contain" style={styles.image} />
+    <TouchableOpacity style={styles.icon} onPress={leftIconAction}>
+      <Image source={leftIcon} resizeMode="contain" style={styles.image} />
     </TouchableOpacity>
     <View
       style={{
@@ -13,12 +19,14 @@ const Header: React.FC<{ location: string }> = ({ location }) => (
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <View style={styles.location}>
-        <Text style={{ ...FONTS.h3 }}>{location}</Text>
+      <View style={styles.title}>
+        <Text style={{ ...FONTS.h3 }}>{title}</Text>
       </View>
     </View>
-    <TouchableOpacity style={{ ...styles.icon, ...styles.icon2 }}>
-      <Image source={icons.basket} resizeMode="contain" style={styles.image} />
+    <TouchableOpacity
+      style={{ ...styles.icon, ...styles.icon2 }}
+      onPress={rightIconAction}>
+      <Image source={rightIcon} resizeMode="contain" style={styles.image} />
     </TouchableOpacity>
   </View>
 );
@@ -34,7 +42,7 @@ const styles = StyleSheet.create({
     paddingRight: SIZES.padding * 2,
     paddingLeft: 0,
   },
-  location: {
+  title: {
     width: '70%',
     height: '100%',
     backgroundColor: COLORS.lightGray3,
