@@ -9,6 +9,6 @@ const OrderDelivery: React.FC = () => {
   );
 };
 
-export default OrderDelivery;
-
 const styles = StyleSheet.create({});
+
+export default OrderDelivery;

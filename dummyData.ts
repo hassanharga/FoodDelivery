@@ -8,6 +8,38 @@ export type Category = {
   icon: typeof import('*.png');
 };
 
+export type Location = {
+  latitude: number;
+  longitude: number;
+};
+
+export type Courier = {
+  avatar: typeof import('*.png');
+  name: string;
+};
+
+export type Menu = {
+  menuId: number;
+  name: string;
+  photo: typeof import('*.png');
+  description: string;
+  calories: number;
+  price: number;
+};
+
+export type Restaurant = {
+  id: number;
+  name: string;
+  rating: number;
+  categories: number[];
+  priceRating: number;
+  photo: typeof import('*.png');
+  duration: string;
+  location: Location;
+  courier: Courier;
+  menu: Menu[];
+};
+
 export const initialCurrentLocation = {
   streetName: 'Kuching',
   gps: {
@@ -16,7 +48,7 @@ export const initialCurrentLocation = {
   },
 };
 
-export const categoryData = [
+export const categoryData: Category[] = [
   {
     id: 1,
     name: 'Rice',
@@ -74,7 +106,7 @@ export const affordable = 1;
 export const fairPrice = 2;
 export const expensive = 3;
 
-export const restaurantData = [
+export const restaurantData: Restaurant[] = [
   {
     id: 1,
     name: 'ByProgrammers Burger',

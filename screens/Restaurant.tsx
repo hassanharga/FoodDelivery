@@ -9,6 +9,6 @@ const Restaurant: React.FC = () => {
   );
 };
 
-export default Restaurant;
-
 const styles = StyleSheet.create({});
+
+export default Restaurant;

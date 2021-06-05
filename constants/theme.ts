@@ -84,11 +84,11 @@ export const SHADOW = {
   shadowColor: '#000',
   shadowOffset: {
     width: 0,
-    height: 3,
+    height: 4,
   },
-  shadowOpacity: 0.1,
-  shadowRadius: 3,
-  elevation: 1,
+  shadowOpacity: 0.3,
+  shadowRadius: 5,
+  elevation: 10,
 };
 
 const appTheme = { COLORS, SIZES, FONTS, SHADOW };
