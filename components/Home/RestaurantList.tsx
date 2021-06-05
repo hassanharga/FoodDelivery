@@ -1,16 +1,27 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { COLORS, FONTS, icons, SHADOW, SIZES } from '../../constants';
-import { Restaurant } from '../../dummyData';
+import { COLORS, FONTS, icons, routes, SHADOW, SIZES } from '../../constants';
+import { CurrentLocation, Restaurant } from '../../dummyData';
 
 const RestaurantList: React.FC<{
   restaurants: Restaurant[];
-}> = ({ restaurants }) => {
+  currentLocation: CurrentLocation;
+  getCatNameById: (id: number) => string;
+}> = ({ restaurants, currentLocation, getCatNameById }) => {
+  const navigation = useNavigation();
+
   const renderItem = ({ item }: { item: Restaurant }) => {
-    // TODO: nagivate to restaurant screen
     return (
-      <TouchableOpacity style={styles.card}>
+      <TouchableOpacity
+        style={styles.card}
+        onPress={() => {
+          navigation.navigate(routes.RESTAURANT, {
+            item,
+            currentLocation,
+          });
+        }}>
         <View
           style={{
             marginBottom: SIZES.padding,
@@ -28,6 +39,27 @@ const RestaurantList: React.FC<{
         <View style={styles.rating}>
           <Image source={icons.star} style={styles.star} />
           <Text style={styles.ratingNumber}>{item.rating}</Text>
+          {/* label */}
+          <View style={styles.label}>
+            {item.categories.map(cat => (
+              <View key={cat} style={{ flexDirection: 'row' }}>
+                <Text style={styles.ratingNumber}>
+                  {getCatNameById(cat)} {'. '}
+                </Text>
+                {[1, 2, 3].map(n => (
+                  <Text
+                    key={n}
+                    style={{
+                      ...styles.ratingNumber,
+                      color:
+                        n <= item.priceRating ? COLORS.black : COLORS.darkgray,
+                    }}>
+                    $
+                  </Text>
+                ))}
+              </View>
+            ))}
+          </View>
         </View>
       </TouchableOpacity>
     );
@@ -61,7 +93,7 @@ const styles = StyleSheet.create({
     width: SIZES.width * 0.3,
     backgroundColor: COLORS.white,
     borderTopRightRadius: SIZES.radius,
-    // borderTopLeftRadius: SIZES.radius,
+    borderBottomLeftRadius: SIZES.radius,
     alignItems: 'center',
     justifyContent: 'center',
     ...SHADOW,
@@ -84,6 +116,10 @@ const styles = StyleSheet.create({
     height: 20,
     tintColor: COLORS.primary,
     marginRight: 10,
+  },
+  label: {
+    flexDirection: 'row',
+    marginHorizontal: 10,
   },
 });
 

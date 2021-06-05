@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { COLORS, FONTS, icons, SIZES } from '../../constants';
 
-const HomeHeader: React.FC<{ location: string }> = ({ location }) => (
+const Header: React.FC<{ location: string }> = ({ location }) => (
   <View style={styles.header}>
     <TouchableOpacity style={styles.icon}>
       <Image source={icons.nearby} resizeMode="contain" style={styles.image} />
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeHeader;
+export default Header;

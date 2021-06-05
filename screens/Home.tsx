@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import HomeHeader from '../components/Home/HomeHeader';
-import HomeMainCategories from '../components/Home/HomeMainCategories';
+import Header from '../components/Home/Header';
+import MainCategories from '../components/Home/MainCategories';
 import RestaurantList from '../components/Home/RestaurantList';
 import { COLORS } from '../constants';
 import {
@@ -13,11 +13,11 @@ import {
 } from '../dummyData';
 
 const Home: React.FC = () => {
-  const [categories, setCategories] = useState(categoryData);
+  const [categories] = useState(categoryData);
   const [selectedCategory, setSelectedCategory] =
     useState<Category | null>(null);
   const [allRestaurants] = useState(restaurantData);
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [restaurants, setRestaurants] = useState<Restaurant[]>(restaurantData);
   const [currentLocation] = useState(initialCurrentLocation);
 
   const onSelectCategory = (category: Category) => {
@@ -28,19 +28,28 @@ const Home: React.FC = () => {
     setSelectedCategory(category);
   };
 
+  const getCatNameById = (id: number) => {
+    const category = categories.find(ele => ele.id === +id);
+    return category?.name || '';
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* page header */}
-      <HomeHeader location={currentLocation.streetName} />
+      <Header location={currentLocation.streetName} />
 
       {/* categoriest */}
-      <HomeMainCategories
+      <MainCategories
         categories={categories}
         selectedCategory={selectedCategory}
         onSelectCategory={onSelectCategory}
       />
       {/* retaurant list */}
-      <RestaurantList restaurants={restaurants} />
+      <RestaurantList
+        restaurants={restaurants}
+        currentLocation={currentLocation}
+        getCatNameById={getCatNameById}
+      />
     </SafeAreaView>
   );
 };

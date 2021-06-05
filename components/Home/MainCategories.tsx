@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { COLORS, FONTS, SHADOW, SIZES } from '../../constants';
 import { Category } from '../../dummyData';
 
-const HomeMainCategories: React.FC<{
+const MainCategories: React.FC<{
   categories: Category[];
   selectedCategory: Category | null;
   onSelectCategory: (item: Category) => void;
@@ -52,7 +52,9 @@ const HomeMainCategories: React.FC<{
         showsHorizontalScrollIndicator={false}
         keyExtractor={({ id }) => `${id}`}
         renderItem={renderItem}
-        contentContainerStyle={{ paddingVertical: SIZES.padding * 2 }}
+        contentContainerStyle={{
+          padding: SIZES.padding * 2,
+        }}
       />
     </View>
   );
@@ -83,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeMainCategories;
+export default MainCategories;

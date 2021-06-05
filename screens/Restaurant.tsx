@@ -1,10 +1,19 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { routes } from '../constants';
 
 const Restaurant: React.FC = () => {
+  const navigation = useNavigation();
   return (
     <View>
-      <Text></Text>
+      <Text>Restaurant</Text>
+      <Button
+        title={'back to Home'}
+        onPress={() => {
+          navigation.navigate(routes.HOME);
+        }}
+      />
     </View>
   );
 };

@@ -13,6 +13,11 @@ export type Location = {
   longitude: number;
 };
 
+export type CurrentLocation = {
+  streetName: string;
+  gps: Location;
+};
+
 export type Courier = {
   avatar: typeof import('*.png');
   name: string;
@@ -109,7 +114,7 @@ export const expensive = 3;
 export const restaurantData: Restaurant[] = [
   {
     id: 1,
-    name: 'ByProgrammers Burger',
+    name: 'Restaurant Burger',
     rating: 4.8,
     categories: [5, 7],
     priceRating: affordable,
@@ -152,7 +157,7 @@ export const restaurantData: Restaurant[] = [
   },
   {
     id: 2,
-    name: 'ByProgrammers Pizza',
+    name: 'Restaurant Pizza',
     rating: 4.8,
     categories: [2, 4, 6],
     priceRating: expensive,
@@ -204,7 +209,7 @@ export const restaurantData: Restaurant[] = [
   },
   {
     id: 3,
-    name: 'ByProgrammers Hotdogs',
+    name: 'Restaurant Hotdogs',
     rating: 4.8,
     categories: [3],
     priceRating: expensive,
@@ -231,7 +236,7 @@ export const restaurantData: Restaurant[] = [
   },
   {
     id: 4,
-    name: 'ByProgrammers Sushi',
+    name: 'Restaurant Sushi',
     rating: 4.8,
     categories: [8],
     priceRating: expensive,
@@ -258,7 +263,7 @@ export const restaurantData: Restaurant[] = [
   },
   {
     id: 5,
-    name: 'ByProgrammers Cuisine',
+    name: 'Restaurant Cuisine',
     rating: 4.8,
     categories: [1, 2],
     priceRating: affordable,
@@ -309,7 +314,7 @@ export const restaurantData: Restaurant[] = [
   },
   {
     id: 6,
-    name: 'ByProgrammers Dessets',
+    name: 'Restaurant Dessets',
     rating: 4.9,
     categories: [9, 10],
     priceRating: affordable,
