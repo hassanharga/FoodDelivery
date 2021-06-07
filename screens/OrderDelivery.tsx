@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 const OrderDelivery: React.FC = () => {
   return (
     <View>
-      <Text></Text>
+      <Text>OrderDelivery</Text>
     </View>
   );
 };

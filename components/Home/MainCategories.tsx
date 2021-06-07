@@ -1,14 +1,27 @@
 import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import { COLORS, FONTS, SHADOW, SIZES } from '../../constants';
-import { Category } from '../../dummyData';
+import { Category } from '../../types';
 
-const MainCategories: React.FC<{
+type Props = {
   categories: Category[];
   selectedCategory: Category | null;
   onSelectCategory: (item: Category) => void;
-}> = ({ categories, selectedCategory, onSelectCategory }) => {
+};
+
+const MainCategories: React.FC<Props> = ({
+  categories,
+  selectedCategory,
+  onSelectCategory,
+}) => {
+  // TODO: make this as component
   const renderItem = ({ item }: { item: Category }) => {
     return (
       <TouchableOpacity

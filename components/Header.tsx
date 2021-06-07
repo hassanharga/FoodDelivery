@@ -1,14 +1,28 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  ImageURISource,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { COLORS, FONTS, SIZES } from '../constants';
 
-const Header: React.FC<{
-  title: string | undefined;
-  leftIcon: typeof import('*.png');
-  rightIcon: typeof import('*.png');
+type Props = {
+  leftIcon: ImageURISource;
+  rightIcon: ImageURISource;
+  title: string;
   leftIconAction?: () => void;
   rightIconAction?: () => void;
-}> = ({ title, leftIcon, rightIcon, leftIconAction, rightIconAction }) => (
+};
+const Header: React.FC<Props> = ({
+  title,
+  leftIcon,
+  rightIcon,
+  leftIconAction,
+  rightIconAction,
+}) => (
   <View style={styles.header}>
     <TouchableOpacity style={styles.icon} onPress={leftIconAction}>
       <Image source={leftIcon} resizeMode="contain" style={styles.image} />

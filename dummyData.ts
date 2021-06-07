@@ -1,49 +1,7 @@
 import { images, icons } from './constants';
+import { Category, Restaurant } from './types';
 
 // Dummy Data
-
-export type Category = {
-  id: number;
-  name: string;
-  icon: typeof import('*.png');
-};
-
-export type Location = {
-  latitude: number;
-  longitude: number;
-};
-
-export type CurrentLocation = {
-  streetName: string;
-  gps: Location;
-};
-
-export type Courier = {
-  avatar: typeof import('*.png');
-  name: string;
-};
-
-export type Menu = {
-  menuId: number;
-  name: string;
-  photo: typeof import('*.png');
-  description: string;
-  calories: number;
-  price: number;
-};
-
-export type Restaurant = {
-  id: number;
-  name: string;
-  rating: number;
-  categories: number[];
-  priceRating: number;
-  photo: typeof import('*.png');
-  duration: string;
-  location: Location;
-  courier: Courier;
-  menu: Menu[];
-};
 
 export const initialCurrentLocation = {
   streetName: 'Kuching',

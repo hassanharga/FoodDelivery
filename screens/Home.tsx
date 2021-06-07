@@ -1,36 +1,69 @@
-import React, { useState } from 'react';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import MainCategories from '../components/Home/MainCategories';
 import RestaurantList from '../components/Home/RestaurantList';
 import { COLORS, icons } from '../constants';
 import {
-  Category,
   categoryData,
   initialCurrentLocation,
-  Restaurant,
   restaurantData,
 } from '../dummyData';
+import {
+  Category,
+  Restaurant,
+  StackNavigatorParamsList,
+  TabsNavigatorParamsList,
+} from '../types';
 
-const Home: React.FC = () => {
+type Props = {
+  navigation: CompositeNavigationProp<
+    BottomTabNavigationProp<TabsNavigatorParamsList, 'Home'>,
+    StackNavigationProp<StackNavigatorParamsList>
+  >;
+};
+const Home: React.FC<Props> = ({ navigation }) => {
   const [categories] = useState(categoryData);
+
   const [selectedCategory, setSelectedCategory] =
     useState<Category | null>(null);
+
   const [allRestaurants] = useState(restaurantData);
+
   const [restaurants, setRestaurants] = useState<Restaurant[]>(restaurantData);
+
   const [currentLocation] = useState(initialCurrentLocation);
 
-  const onSelectCategory = (category: Category) => {
+  useEffect(() => {
+    setSelectedCategory(categories[0]);
+    onSelectRestaurant(categories[0]);
+  }, []);
+
+  const onSelectRestaurant = (category: Category) => {
     const restaurantList = allRestaurants.filter(ele =>
       ele.categories.includes(category.id),
     );
     setRestaurants(restaurantList);
+  };
+
+  const onSelectCategory = (category: Category) => {
+    onSelectRestaurant(category);
     setSelectedCategory(category);
   };
 
   const getCatNameById = (id: number) => {
     const category = categories.find(ele => ele.id === +id);
     return category?.name || '';
+  };
+
+  const navigateTo = (item: Restaurant) => {
+    navigation.navigate('Restaurant', {
+      item,
+      currentLocation,
+    });
   };
 
   return (
@@ -51,8 +84,8 @@ const Home: React.FC = () => {
       {/* retaurant list */}
       <RestaurantList
         restaurants={restaurants}
-        currentLocation={currentLocation}
         getCatNameById={getCatNameById}
+        navigateTo={navigateTo}
       />
     </SafeAreaView>
   );

@@ -1,26 +1,25 @@
-import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { COLORS, FONTS, icons, routes, SHADOW, SIZES } from '../../constants';
-import { CurrentLocation, Restaurant } from '../../dummyData';
-
-const RestaurantList: React.FC<{
+import { COLORS, FONTS, icons, SHADOW, SIZES } from '../../constants';
+import { CurrentLocation, Restaurant } from '../../types';
+export type Props = {
   restaurants: Restaurant[];
-  currentLocation: CurrentLocation;
   getCatNameById: (id: number) => string;
-}> = ({ restaurants, currentLocation, getCatNameById }) => {
-  const navigation = useNavigation();
+  navigateTo: (item: Restaurant) => void;
+};
 
+const RestaurantList: React.FC<Props> = ({
+  restaurants,
+  getCatNameById,
+  navigateTo,
+}) => {
   const renderItem = ({ item }: { item: Restaurant }) => {
     return (
       <TouchableOpacity
         style={styles.card}
         onPress={() => {
-          navigation.navigate(routes.RESTAURANT, {
-            item,
-            currentLocation,
-          });
+          navigateTo(item);
         }}>
         <View
           style={{

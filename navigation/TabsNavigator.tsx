@@ -13,10 +13,11 @@ import {
 } from 'react-native';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 import Svg, { Path } from 'react-native-svg';
-import { COLORS, icons, routes } from '../constants';
+import { COLORS, icons } from '../constants';
 import { Home } from '../screens';
+import { TabsNavigatorParamsList } from '../types';
 
-const Tab = createBottomTabNavigator();
+const Tabs = createBottomTabNavigator<TabsNavigatorParamsList>();
 
 const TabBarImage: React.FC<{ focused: boolean; icon: ImageSourcePropType }> =
   ({ focused, icon }) => {
@@ -105,9 +106,10 @@ const CustomTabBar = ({ props }: any) => {
   return <BottomTabBar {...props} />;
 };
 
-const Tabs: React.FC = () => {
+const TabsNavigator: React.FC = () => {
+  const { Navigator, Screen } = Tabs;
   return (
-    <Tab.Navigator
+    <Navigator
       tabBarOptions={{
         showLabel: false,
         style: {
@@ -117,8 +119,8 @@ const Tabs: React.FC = () => {
         },
       }}
       tabBar={props => <CustomTabBar props={props} />}>
-      <Tab.Screen
-        name={routes.HOME}
+      <Screen
+        name="Home"
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -133,8 +135,8 @@ const Tabs: React.FC = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name={routes.SEARCH}
+      <Screen
+        name="Search"
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -149,8 +151,8 @@ const Tabs: React.FC = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name={routes.LIKE}
+      <Screen
+        name="Like"
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -165,8 +167,8 @@ const Tabs: React.FC = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name={routes.USER}
+      <Screen
+        name="User"
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -181,8 +183,8 @@ const Tabs: React.FC = () => {
           ),
         }}
       />
-    </Tab.Navigator>
+    </Navigator>
   );
 };
 
-export default Tabs;
+export default TabsNavigator;

@@ -1,29 +1,35 @@
-import { useNavigation, useRoute } from '@react-navigation/core';
+import { RouteProp } from '@react-navigation/core';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import FoodInfo from '../components/Restaurant/FoodInfo';
 import { COLORS, icons } from '../constants';
-import { CurrentLocation, Restaurant as RestaurantType } from '../dummyData';
+import {
+  CurrentLocation,
+  Restaurant as RestaurantType,
+  StackNavigatorParamsList,
+} from '../types';
 
-const Restaurant: React.FC = () => {
-  const navigation = useNavigation();
-  const router = useRoute();
+export type Props = {
+  navigation: StackNavigationProp<StackNavigatorParamsList, 'Restaurant'>;
+  route: RouteProp<StackNavigatorParamsList, 'Restaurant'>;
+};
+
+const Restaurant: React.FC<Props> = ({ route, navigation }) => {
   const [currentLocation, setCurrentLocation] =
     useState<CurrentLocation | undefined>();
+
   const [restaurant, setRestaurant] = useState<RestaurantType | null>(null);
 
   useEffect(() => {
-    console.log(`router`, router.params);
-    if (router.params) {
-      const { currentLocation, item } = router.params as {
-        currentLocation: CurrentLocation;
-        item: RestaurantType;
-      };
+    console.log(`route`, route.params);
+    if (route.params) {
+      const { currentLocation, item } = route.params;
       setCurrentLocation(currentLocation);
       setRestaurant(item);
     }
-  }, [router]);
+  }, [route]);
 
   return (
     <SafeAreaView style={styles.container}>
