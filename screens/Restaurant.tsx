@@ -17,13 +17,12 @@ export type Props = {
 };
 
 const Restaurant: React.FC<Props> = ({ route, navigation }) => {
-  const [currentLocation, setCurrentLocation] =
-    useState<CurrentLocation | undefined>();
+  const [, setCurrentLocation] = useState<CurrentLocation | undefined>();
 
   const [restaurant, setRestaurant] = useState<RestaurantType | null>(null);
 
   useEffect(() => {
-    console.log(`route`, route.params);
+    console.log('route', route.params);
     if (route.params) {
       const { currentLocation, item } = route.params;
       setCurrentLocation(currentLocation);

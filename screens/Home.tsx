@@ -38,8 +38,10 @@ const Home: React.FC<Props> = ({ navigation }) => {
   const [currentLocation] = useState(initialCurrentLocation);
 
   useEffect(() => {
+    console.log('categories', categories.length);
     setSelectedCategory(categories[0]);
     onSelectRestaurant(categories[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSelectRestaurant = (category: Category) => {

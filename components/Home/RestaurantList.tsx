@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { COLORS, FONTS, icons, SHADOW, SIZES } from '../../constants';
-import { CurrentLocation, Restaurant } from '../../types';
+import { Restaurant } from '../../types';
 export type Props = {
   restaurants: Restaurant[];
   getCatNameById: (id: number) => string;
@@ -41,7 +41,7 @@ const RestaurantList: React.FC<Props> = ({
           {/* label */}
           <View style={styles.label}>
             {item.categories.map(cat => (
-              <View key={cat} style={{ flexDirection: 'row' }}>
+              <View key={cat} style={styles.category}>
                 <Text style={styles.ratingNumber}>
                   {getCatNameById(cat)} {'. '}
                 </Text>
@@ -67,18 +67,20 @@ const RestaurantList: React.FC<Props> = ({
       data={restaurants}
       keyExtractor={({ id }) => `${id}`}
       renderItem={renderItem}
-      contentContainerStyle={{
-        paddingHorizontal: SIZES.padding * 2,
-        paddingBottom: 30,
-      }}
+      contentContainerStyle={styles.list}
     />
   );
 };
 
 const styles = StyleSheet.create({
+  list: {
+    paddingHorizontal: SIZES.padding * 2,
+    paddingBottom: 30,
+  },
   card: {
     marginBottom: SIZES.padding * 2,
   },
+  category: { flexDirection: 'row' },
   image: {
     width: '100%',
     height: 200,

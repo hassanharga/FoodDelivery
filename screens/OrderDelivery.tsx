@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 const OrderDelivery: React.FC = () => {
   return (
@@ -9,6 +9,6 @@ const OrderDelivery: React.FC = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});
 
 export default OrderDelivery;

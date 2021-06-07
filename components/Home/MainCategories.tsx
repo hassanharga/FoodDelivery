@@ -56,7 +56,7 @@ const MainCategories: React.FC<Props> = ({
     );
   };
   return (
-    <View style={{ paddingHorizontal: 10 }}>
+    <View style={styles.container}>
       <Text style={{ ...FONTS.h1 }}>Main</Text>
       <Text style={{ ...FONTS.h1 }}>Categories</Text>
       <FlatList
@@ -73,6 +73,7 @@ const MainCategories: React.FC<Props> = ({
   );
 };
 const styles = StyleSheet.create({
+  container: { paddingHorizontal: 10 },
   category: {
     padding: SIZES.padding,
     paddingBottom: SIZES.padding * 2,

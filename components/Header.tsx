@@ -27,12 +27,7 @@ const Header: React.FC<Props> = ({
     <TouchableOpacity style={styles.icon} onPress={leftIconAction}>
       <Image source={leftIcon} resizeMode="contain" style={styles.image} />
     </TouchableOpacity>
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
+    <View style={styles.titleContainer}>
       <View style={styles.title}>
         <Text style={{ ...FONTS.h3 }}>{title}</Text>
       </View>
@@ -55,6 +50,11 @@ const styles = StyleSheet.create({
   icon2: {
     paddingRight: SIZES.padding * 2,
     paddingLeft: 0,
+  },
+  titleContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
     width: '70%',
