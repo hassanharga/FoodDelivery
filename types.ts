@@ -14,7 +14,7 @@ export type StackNavigatorParamsList = {
     currentLocation: CurrentLocation;
     item: Restaurant;
   };
-  OrderDelivery: undefined;
+  OrderDelivery: { currentLocation: CurrentLocation; restaurant: Restaurant };
 };
 
 export type Category = {
